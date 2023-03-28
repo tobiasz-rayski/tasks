@@ -35,6 +35,8 @@ checkCashRegister(19.5, 20, [
 // ];
 
 function cashRegister(price, cash) {
+  let changeToGive = cash - price;
+
   const values = {
     PENNY: 0.01,
     NICKEL: 0.05,
@@ -63,42 +65,22 @@ function cashRegister(price, cash) {
     return values[b[0]] - values[a[0]];
   });
 
-  //   [
-  //     [ 'ONE HUNDRED', 200 ],
-  //     [ 'TWENTY', 60 ],
-  //     [ 'TEN', 20 ],
-  //     [ 'FIVE', 55 ],
-  //     [ 'ONE', 90 ],
-  //     [ 'QUARTER', 4.25 ],
-  //     [ 'DIME', 3.1 ],
-  //     [ 'NICKEL', 2.05 ],
-  //     [ 'PENNY', 1.01 ]
-  //   ]
+  drawer = drawer.filter((x) => x[1] !== 0);
 
-  drawer[0][1] -= values[drawer[0][0]];
-  console.log(drawer[0][1]);
+  console.log(drawer);
 
-  //   console.log(drawer[0][1]);
+  let drawerTotal = drawer.reduce((value, x) => {
+    return value + x[1];
+  }, 0);
 
-  //   console.log(drawer);
+  drawerTotal = Number(drawerTotal.toFixed(2));
 
-  //   let changeArr = [];
-
-  //   if (cash > price) {
-  //     let changeToGive = cash - price;
-  //   }
-
-  //   let drawerTotal = drawer.reduce((value, x) => {
-  //     return value + x[1];
-  //   }, 0);
-
-  //   drawerTotal = Number(drawerTotal.toFixed(2));
-
-  // if (drawerTotal > changeToGive) {
-  //     drawer.filter(x => x[0] = "ONE HUNDRED")
-  // }
-
-  //   return drawerTotal;
+  console.log();
+  console.log(`Drawer balance: ${drawerTotal}`);
+  console.log(`Item price: ${price}`);
+  console.log(`Payment: ${cash}`);
+  console.log(`Give change: ${changeToGive}`);
+  console.log(drawer);
 }
 
-cashRegister();
+cashRegister(17.45, 100);
